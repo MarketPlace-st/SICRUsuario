@@ -1,0 +1,116 @@
+.dashboard-container {
+    display: flex;
+    gap: 32px;
+    padding: 24px 48px;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: calc(100vh - 200px); /* Ajusta según el tamaño de tu header y footer */
+}
+
+.sidemenu-container {
+    flex: 0 0 280px; /* Ancho fijo para el menú lateral */
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+}
+
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1000px; /* Evita que el contenido se estire demasiado */
+}
+
+.dashboard-row {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Ajustes para las tarjetas */
+.info-card, 
+.solicitud-pendiente {
+    flex: 1;
+    min-width: 300px; /* Ancho mínimo para mantener el diseño */
+    max-width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        padding: 20px 24px;
+    }
+}
+
+@media (max-width: 992px) {
+    .dashboard-row {
+        flex-direction: column;
+    }
+
+    .info-card,
+    .solicitud-pendiente {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .sidemenu-container {
+        position: static;
+        width: 100%;
+    }
+
+    .dashboard-main {
+        width: 100%;
+    }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-container {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Mejoras visuales */
+.dashboard-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(180deg, rgba(217, 74, 49, 0.05) 0%, rgba(217, 74, 49, 0) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+  
+  
+
+
+  
+  
+
+
+  
+  
+  
+  
+  
+
+  

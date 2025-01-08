@@ -1,0 +1,10 @@
+/*Estilos del Footer*/
+.footer {
+    background-color: #D94A3D;
+    color: white;
+    text-align: center;
+    padding: 15px 20px;
+    position: relative;
+    margin-top: 20px;
+    width: 100%;
+  }

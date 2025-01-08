@@ -1,0 +1,167 @@
+/*Estilos para Formulario General*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+.formulario-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.formulario-header {
+  background-color: #dd4b39;
+  border-radius: 20px;
+  height: 80px;
+  position: relative;
+  overflow: visible;
+  margin-bottom: 60px;
+}
+
+.titulo-container {
+  background-color: white;
+  border-radius: 25px;
+  padding: 15px 40px;
+  position: absolute;
+  left: 40px;
+  transform: translateY(50%);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: auto;
+  min-width: 250px;
+  bottom: 0;
+}
+
+.titulo-container h2 {
+  margin: 0;
+  text-align: center;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+}
+
+.formulario-content {
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  margin-top: 0;
+}
+
+.formulario-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 40px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  color: #000;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.required {
+  color: #dd4b39;
+  margin-left: 2px;
+}
+
+.formulario-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  background-color: #f8f8f8;
+  color: #666;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.formulario-input::placeholder {
+  color: #999;
+  font-weight: 300;
+}
+
+.formulario-button {
+  grid-column: span 2;
+  background-color: #dd4b39;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.texto-adicional {
+  text-align: center;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 400;
+  margin: 20px 0 0;
+  grid-column: span 2;
+}
+
+.link-adicional {
+  color: #dd4b39;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.link-adicional:hover {
+  text-decoration: underline;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .formulario-card {
+    padding: 20px;
+  }
+
+  .formulario-form {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+
+  .formulario-button {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .formulario-card {
+    padding: 30px 20px;
+    margin: 0 15px;
+  }
+  
+  .formulario-logo {
+    width: 120px;
+  }
+}
+
+.formulario-card h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 500;
+}
+

@@ -1,0 +1,96 @@
+.banner-perfil-container {
+  position: relative;
+  background-image: url('../Imagenes/Breadcrumb.png'); /* Ruta a la imagen */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 150px; /* Ajuste de altura */
+  border-radius: 20px;
+  margin: 20px auto;
+  padding: 0 40px; /* Espacio a los lados */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  overflow: hidden;
+  max-width: 80%; /* Ajusta el ancho total */
+}
+
+.banner-perfil-card {
+  position: absolute;
+  bottom: -20px; /* Asegura que el card esté ligeramente fuera del banner */
+  left: 40px; /* Espaciado desde el lado izquierdo */
+  background: rgba(255, 255, 255, 0.8); /* Fondo blanco translúcido */
+  padding: 20px 140px; /* Más espacio interno */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 400px; /* Ancho máximo */
+  backdrop-filter: blur(8px); /* Efecto de desenfoque */
+}
+
+.banner-perfil-card h3 {
+  margin: 0;
+  font-size: 18px; /* Tamaño balanceado */
+  font-weight: 600;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+
+.banner-perfil-card p {
+  margin: 5px 0 0;
+  font-size: 14px;
+  color: #666;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .banner-perfil-container {
+    height: 120px;
+    padding: 0 20px;
+  }
+
+  .banner-perfil-card {
+    bottom: -15px;
+    left: 20px;
+    padding: 15px 30px;
+    max-width: 300px;
+  }
+
+  .banner-perfil-card h3 {
+    font-size: 16px;
+  }
+
+  .banner-perfil-card p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-perfil-container {
+    height: 100px;
+    padding: 0 15px;
+  }
+
+  .banner-perfil-card {
+    bottom: -10px;
+    left: 15px;
+    padding: 10px 20px;
+    max-width: 250px;
+  }
+
+  .banner-perfil-card h3 {
+    font-size: 14px;
+  }
+
+  .banner-perfil-card p {
+    font-size: 12px;
+  }
+}
+
+
+
+  
+  

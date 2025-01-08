@@ -1,0 +1,106 @@
+/*Estilos para Solicitud Pendiente*/
+.solicitud-pendiente {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.solicitud-pendiente h2 {
+  color: #2d3748;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+}
+
+.solicitudes-table {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
+}
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.95rem;
+}
+
+thead {
+  background: #f8fafc;
+}
+
+th {
+  color: #64748b;
+  font-weight: 600;
+  text-align: left;
+  padding: 16px;
+  border-bottom: 1px solid #e2e8f0;
+  white-space: nowrap;
+}
+
+td {
+  padding: 16px;
+  color: #475569;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Columna de estado */
+td:last-child {
+  font-weight: 500;
+}
+
+/* Estilos para los diferentes estados */
+td[data-estado="pendiente"] {
+  color: #eab308;
+}
+
+td[data-estado="aprobada"] {
+  color: #22c55e;
+}
+
+td[data-estado="rechazada"] {
+  color: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .solicitud-pendiente {
+    padding: 16px;
+  }
+
+  th, td {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.solicitud-pendiente {
+  animation: fadeIn 0.3s ease-out;
+}

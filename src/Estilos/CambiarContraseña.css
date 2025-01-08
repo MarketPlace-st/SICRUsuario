@@ -1,0 +1,118 @@
+.cambiar-container {
+    max-width: 800px;
+    margin: 40px 0 40px 80px; /* Ajusta el margen izquierdo */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cambiar-container h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.cambiar-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+}
+
+.form-group input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+}
+
+.form-buttons {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.cancelar-button,
+.guardar-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #fff;
+}
+
+.cancelar-button {
+    background-color: #ccc;
+}
+
+.guardar-button {
+    background-color: #D94A31;
+}
+
+.cancelar-button:hover {
+    background-color: #bbb;
+}
+
+.guardar-button:hover {
+    background-color: #c53727;
+}
+
+.password-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.toggle-password:hover {
+  color: #D94A31;
+}
+
+.error {
+  border-color: #dc3545 !important;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+}
+
+  
