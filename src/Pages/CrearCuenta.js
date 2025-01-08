@@ -127,19 +127,20 @@ const CrearCuenta = () => {
   };
 
   return (
-    <div className="register-page">
-      <Header isAuthenticated={false} />
-      <FormularioGeneral
-        titulo="Crear Cuenta"
-        campos={campos}
-        botonTexto="Crear Cuenta"
-        onSubmit={handleRegister}
-        showLogo={true}
-      />
+    <div className="page-container">
+      <div className="content-wrapper">
+        <Header isAuthenticated={false} />
+        <FormularioGeneral
+          titulo="Crear Cuenta"
+          campos={campos}
+          botonTexto="Crear Cuenta"
+          onSubmit={handleRegister}
+          showLogo={true}
+        />
+      </div>
       <Footer />
     </div>
   );
 };
 
 export default CrearCuenta;
-  

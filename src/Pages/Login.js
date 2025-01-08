@@ -47,17 +47,19 @@ const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <Header isAuthenticated={false} />
-      <FormularioGeneral
-        titulo="Iniciar Sesión"
-        campos={campos}
-        botonTexto="Iniciar Sesión"
-        onSubmit={handleLogin}
-        showLogo={true}
-        linkText="¿No tienes una cuenta? Regístrate aquí"
-        linkTo="/crear-cuenta"
-      />
+    <div className="page-container">
+      <div className="content-wrapper">
+        <Header isAuthenticated={false} />
+        <FormularioGeneral
+          titulo="Iniciar Sesión"
+          campos={campos}
+          botonTexto="Iniciar Sesión"
+          onSubmit={handleLogin}
+          showLogo={true}
+          linkText="¿No tienes una cuenta? Regístrate aquí"
+          linkTo="/crear-cuenta"
+        />
+      </div>
       <Footer />
     </div>
   );

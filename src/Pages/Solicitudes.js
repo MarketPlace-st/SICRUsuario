@@ -181,20 +181,22 @@ const Solicitud = () => {
   ];
 
   return (
-    <div className="solicitud-page">
-      <Header isAuthenticated={true} />
-      <FormularioGeneral
-        titulo="Formulario de Solicitud"
-        campos={campos}
-        botonTexto="Solicitar"
-        onSubmit={handleSubmit}
-        textoAdicional="Al hacer clic en Solicitar, aceptas los"
-        linkAdicional={{
-          texto: "Términos y Condiciones y la Política de Privacidad",
-          ruta: "/terminos"
-        }}
-        showLogo={false}
-      />
+    <div className="page-container">
+      <div className="content-wrapper">
+        <Header isAuthenticated={true} />
+        <FormularioGeneral
+          titulo="Formulario de Solicitud"
+          campos={campos}
+          botonTexto="Solicitar"
+          onSubmit={handleSubmit}
+          textoAdicional="Al hacer clic en Solicitar, aceptas los"
+          linkAdicional={{
+            texto: "Términos y Condiciones y la Política de Privacidad",
+            ruta: "/terminos"
+          }}
+          showLogo={false}
+        />
+      </div>
       <Footer />
     </div>
   );
