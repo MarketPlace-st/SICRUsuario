@@ -4,6 +4,7 @@ import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import FormularioGeneral from '../Componentes/Formulario';
 import '../Estilos/Solucitudes.css';
+import { solicitudService } from '../services/solicitud.service';
 
 const Solicitud = () => {
   const navigate = useNavigate();
@@ -105,17 +106,28 @@ const Solicitud = () => {
   };
 
   // Manejador de envío del formulario
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Estado actual del formulario:', formData);
     console.log('Tipo seleccionado:', selectedTipo);
 
     if (validateForm()) {
-      console.log('Formulario válido, procediendo con el envío');
-      navigate('/dashboard');
+        try {
+            await solicitudService.crearSolicitud({
+                ...formData,
+                tipoEstablecimiento: selectedTipo
+            });
+            navigate('/dashboard');
+        } catch (error) {
+            setFormErrors({
+                ...formErrors,
+                submit: error.message
+            });
+            alert('Error al crear la solicitud: ' + error.message);
+        }
     } else {
-      console.log('Formulario inválido, errores:', formErrors);
-      alert('Por favor, complete todos los campos requeridos correctamente');
+        console.log('Formulario inválido, errores:', formErrors);
+        alert('Por favor, complete todos los campos requeridos correctamente');
     }
   };
 

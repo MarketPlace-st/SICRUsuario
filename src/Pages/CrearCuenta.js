@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import FormularioGeneral from '../Componentes/Formulario';
+import { authService } from '../services/auth.service';
 
 const CrearCuenta = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
+    username: '',
     nombre: '',
+    apellidos: '',
     rnc: '',
     email: '',
     fechaNacimiento: '',
@@ -16,7 +19,7 @@ const CrearCuenta = () => {
     password: '',
     confirmPassword: ''
   });
-  const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -24,27 +27,77 @@ const CrearCuenta = () => {
       ...prevState,
       [name]: value
     }));
+    setError('');
+  };
 
-    if (name === 'password' || name === 'confirmPassword') {
-      if (name === 'confirmPassword' && value !== formData.password) {
-        setPasswordError('Las contraseñas no coinciden');
-      } else if (name === 'password' && value !== formData.confirmPassword && formData.confirmPassword) {
-        setPasswordError('Las contraseñas no coinciden');
-      } else {
-        setPasswordError('');
-      }
+  const validateRNC = (rnc) => {
+    return /^\d{9}$/.test(rnc); // Valida que sean 9 dígitos
+  };
+
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    
+    if (formData.password !== formData.confirmPassword) {
+      setError('Las contraseñas no coinciden');
+      return;
+    }
+
+    if (!validateRNC(formData.rnc)) {
+      setError('El RNC debe tener 9 dígitos');
+      return;
+    }
+
+    try {
+      // Creamos el objeto de datos para el registro
+      const userData = {
+        username: formData.username,
+        password: formData.password,
+        email: formData.email,
+        direccion: formData.direccion,
+        nombre: formData.nombre,
+        apellidos: formData.apellidos,
+        rnc: formData.rnc,
+        telefono: formData.telefono,
+        fechaNacimiento: formData.fechaNacimiento
+      };
+
+      await authService.register(userData);
+      navigate('/dashboard');
+    } catch (error) {
+      setError(error.message);
     }
   };
 
   const campos = [
     {
-      label: 'Nombre Completo',
+      label: 'Nombre de Usuario',
       type: 'text',
-      placeholder: 'Tu nombre completo',
+      placeholder: 'Ingrese su nombre de usuario',
+      name: 'username',
+      required: true,
+      value: formData.username,
+      onChange: handleInputChange,
+      error: error
+    },
+    {
+      label: 'Nombre',
+      type: 'text',
+      placeholder: 'Tu nombre',
       name: 'nombre',
       required: true,
       value: formData.nombre,
-      onChange: handleInputChange
+      onChange: handleInputChange,
+      error: error
+    },
+    {
+      label: 'Apellidos',
+      type: 'text',
+      placeholder: 'Tus apellidos',
+      name: 'apellidos',
+      required: true,
+      value: formData.apellidos,
+      onChange: handleInputChange,
+      error: error
     },
     {
       label: 'RNC',
@@ -53,7 +106,8 @@ const CrearCuenta = () => {
       name: 'rnc',
       required: true,
       value: formData.rnc,
-      onChange: handleInputChange
+      onChange: handleInputChange,
+      error: error
     },
     {
       label: 'Correo Electrónico',
@@ -62,12 +116,12 @@ const CrearCuenta = () => {
       name: 'email',
       required: true,
       value: formData.email,
-      onChange: handleInputChange
+      onChange: handleInputChange,
+      error: error
     },
     {
       label: 'Fecha de Nacimiento',
       type: 'date',
-      placeholder: 'Tu fecha de nacimiento',
       name: 'fechaNacimiento',
       required: true,
       value: formData.fechaNacimiento,
@@ -99,7 +153,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.password,
       onChange: handleInputChange,
-      error: passwordError
+      error: error
     },
     {
       label: 'Confirmar Contraseña',
@@ -109,22 +163,9 @@ const CrearCuenta = () => {
       required: true,
       value: formData.confirmPassword,
       onChange: handleInputChange,
-      error: passwordError
+      error: error
     }
   ];
-
-  const handleRegister = (e) => {
-    e.preventDefault();
-    
-    if (formData.password !== formData.confirmPassword) {
-      setPasswordError('Las contraseñas no coinciden');
-      return;
-    }
-
-    // Aquí puedes agregar la lógica para enviar los datos al servidor
-    console.log('Datos del formulario:', formData);
-    navigate('/dashboard');
-  };
 
   return (
     <div className="page-container">
@@ -136,6 +177,8 @@ const CrearCuenta = () => {
           botonTexto="Crear Cuenta"
           onSubmit={handleRegister}
           showLogo={true}
+          linkText="¿Ya tienes una cuenta? Inicia sesión aquí"
+          linkTo="/login"
         />
       </div>
       <Footer />

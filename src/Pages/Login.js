@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../Componentes/Header';
 import Footer from '../Componentes/Footer';
 import FormularioGeneral from '../Componentes/Formulario';
+import { authService } from '../services/auth.service';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ const Login = () => {
     email: '',
     password: ''
   });
+  const [error, setError] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +19,17 @@ const Login = () => {
       ...prevState,
       [name]: value
     }));
+    setError('');
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await authService.login(formData);
+      navigate('/dashboard');
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   const campos = [
@@ -27,7 +40,8 @@ const Login = () => {
       name: 'email',
       required: true,
       value: formData.email,
-      onChange: handleInputChange
+      onChange: handleInputChange,
+      error: error
     },
     {
       label: 'Contraseña',
@@ -36,15 +50,10 @@ const Login = () => {
       name: 'password',
       required: true,
       value: formData.password,
-      onChange: handleInputChange
+      onChange: handleInputChange,
+      error: error
     }
   ];
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    console.log('Datos de inicio de sesión:', formData);
-    navigate('/dashboard');
-  };
 
   return (
     <div className="page-container">
