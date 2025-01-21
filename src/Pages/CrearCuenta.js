@@ -19,7 +19,7 @@ const CrearCuenta = () => {
     password: '',
     confirmPassword: ''
   });
-  const [error, setError] = useState('');
+  const [formErrors, setFormErrors] = useState({});
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -27,7 +27,14 @@ const CrearCuenta = () => {
       ...prevState,
       [name]: value
     }));
-    setError('');
+    // Limpiar error específico del campo
+    if (formErrors[name]) {
+      setFormErrors(prevErrors => {
+        const newErrors = { ...prevErrors };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
   };
 
   const validateRNC = (rnc) => {
@@ -38,17 +45,16 @@ const CrearCuenta = () => {
     e.preventDefault();
     
     if (formData.password !== formData.confirmPassword) {
-      setError('Las contraseñas no coinciden');
+      setFormErrors({ confirmPassword: 'Las contraseñas no coinciden' });
       return;
     }
 
     if (!validateRNC(formData.rnc)) {
-      setError('El RNC debe tener 9 dígitos');
+      setFormErrors({ rnc: 'El RNC debe tener 9 dígitos' });
       return;
     }
 
     try {
-      // Creamos el objeto de datos para el registro
       const userData = {
         username: formData.username,
         password: formData.password,
@@ -64,7 +70,9 @@ const CrearCuenta = () => {
       await authService.register(userData);
       navigate('/dashboard');
     } catch (error) {
-      setError(error.message);
+      const errorMessage = error.message || 'Error al crear la cuenta';
+      setFormErrors({ submit: errorMessage });
+      console.error('Error detallado:', error);
     }
   };
 
@@ -77,7 +85,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.username,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.username || formErrors.submit
     },
     {
       label: 'Nombre',
@@ -87,7 +95,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.nombre,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.nombre || formErrors.submit
     },
     {
       label: 'Apellidos',
@@ -97,7 +105,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.apellidos,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.apellidos || formErrors.submit
     },
     {
       label: 'RNC',
@@ -107,7 +115,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.rnc,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.rnc || formErrors.submit
     },
     {
       label: 'Correo Electrónico',
@@ -117,7 +125,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.email,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.email || formErrors.submit
     },
     {
       label: 'Fecha de Nacimiento',
@@ -153,7 +161,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.password,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.password || formErrors.submit
     },
     {
       label: 'Confirmar Contraseña',
@@ -163,7 +171,7 @@ const CrearCuenta = () => {
       required: true,
       value: formData.confirmPassword,
       onChange: handleInputChange,
-      error: error
+      error: formErrors.confirmPassword || formErrors.submit
     }
   ];
 
@@ -177,8 +185,7 @@ const CrearCuenta = () => {
           botonTexto="Crear Cuenta"
           onSubmit={handleRegister}
           showLogo={true}
-          linkText="¿Ya tienes una cuenta? Inicia sesión aquí"
-          linkTo="/login"
+          error={formErrors.submit}
         />
       </div>
       <Footer />
